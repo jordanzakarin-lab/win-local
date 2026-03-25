@@ -586,6 +586,1126 @@ var STATES = [
     sheets: [
       {
         label: 'Senate',
+        url: 'https://docs.google.com/spreadsheets/d/1KcWgUTT2l1lD75Pf2IE9K_QNZdrBzfuJo07lrRmxfk0/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-13', 'Open',      '', 'R+4',  'R+1',  'Swing suburb'],
+          ['SD-16', 'Open',      '', 'R+1',  'D+0.5','Toss-up, open seat'],
+          ['SD-28', 'L. Torres', '', 'D+5',  'D+7',  'Incumbent running'],
+        ],
+      },
+      {
+        label: 'House',
+        url: 'https://docs.google.com/spreadsheets/d/1uHQBc-wVSEbZCPFgg-qog-DMObi7U9JryLxh-76EhKg/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-02', 'R. Smith', '', 'R+3',  'R+1',  ''],
+          ['HD-04', 'A. Lee',   '', 'D+5',  'D+6',  ''],
+          ['HD-13', 'Open',     '', 'R+2',  'R+0.5','Open seat'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'michigan',
+    name: 'Michigan',
+    flag: '\uD83D\uDE97',
+    narrativeHeadline: 'Defending the trifecta while eyeing a supermajority',
+    narrativeBody: 'Democrats hold a **narrow majority in the Michigan House** after flipping it in 2022 with the help of new independent maps. Several members represent districts with modest presidential margins, making the chamber a must-defend priority.\n\n- **Must-hold:** Several swing seats in metro Detroit and Grand Rapids suburbs\n- **Pickup targets:** A handful of R-held districts where Biden/Harris ran competitively\n- **Supermajority threshold:** A net gain of ~3 would give Democrats veto-proof control\n\nCandidate recruitment and **early financial investment** in competitive districts are the decisive variables heading into the cycle.',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'https://docs.google.com/spreadsheets/d/1d4NrjWsRVk25ou7MlkcLwN5K2YtIlnUrjHTZzY6mt2g/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-35', 'Open',       '', 'R+1',  'R+0.5','Near-miss 2024'],
+          ['HD-37', 'K. Johnson', '', 'D+3',  'D+4',  'Incumbent running'],
+          ['HD-55', 'P. Davis',   '', 'R+7',  'R+3',  'Suburban shift'],
+          ['HD-61', 'Open',       '', 'D+2',  'D+3',  'Priority hold'],
+        ],
+      },
+      {
+      label: 'House',
+        url: 'https://docs.google.com/spreadsheets/d/1_ihd4A7Wjx22PA99cuCMyizSYLHgti9V6qkFmPNCG7E/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-35', 'Open',       '', 'R+1',  'R+0.5','Near-miss 2024'],
+          ['HD-37', 'K. Johnson', '', 'D+3',  'D+4',  'Incumbent running'],
+          ['HD-55', 'P. Davis',   '', 'R+7',  'R+3',  'Suburban shift'],
+          ['HD-61', 'Open',       '', 'D+2',  'D+3',  'Priority hold'],
+        ],
+    ],
+  },
+  {
+    id: 'pennsylvania',
+    name: 'Pennsylvania',
+    flag: '\uD83D\uDD14',
+    narrativeHeadline: 'Senate majority requires a net +2; House majority must hold',
+    narrativeBody: 'Pennsylvania presents a **two-front challenge** in 2026: defending the narrow House majority while aggressively targeting a Senate flip.\n\n**Senate:** Republicans currently hold the chamber, but Democrats need only a **net gain of 2 seats** — with the Lieutenant Governor breaking ties — to reach functional control. The path runs through suburban Philadelphia and Pittsburgh collar districts.\n\n**House:** The Democratic majority is currently maintained by a slim margin and faces early tests:\n- Ongoing 2026 special elections in key suburban districts\n- A challenging map with several seats carried narrowly at the presidential level\n- Open seats created by retirements in competitive turf',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'https://docs.google.com/spreadsheets/d/1VyD3qeIu8gwqMAzLwiQcyLW4gmbCCiOoWLR1z2_l3DI/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-45', 'Open',      '', 'R+6',  'R+2',  ''],
+          ['SD-49', 'B. Wilson', '', 'R+2',  'R+1',  'Key for majority'],
+          ['SD-17', 'D. Carter', '', 'D+3',  'D+4',  'Incumbent running'],
+        ],
+      },
+      {
+        label: 'House',
+        url: 'https://docs.google.com/spreadsheets/d/1htqzzmR2c184r5yiY8gEipCGufwpW3pmXdfcBuurqgQ/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-144', 'Open',    '', 'D+2',  'D+3',  'Special election 2026'],
+          ['HD-177', 'C. Taylor','','R+4',  'R+2',  ''],
+          ['HD-151', 'S. Patel', '', 'D+5', 'D+6',  'Incumbent running'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'north-carolina',
+    name: 'North Carolina',
+    flag: '\uD83C\uDFD4\uFE0F',
+    narrativeHeadline: 'Cracking the Republican supermajority',
+    narrativeBody: 'Republicans hold a **veto-proof supermajority** in the North Carolina Senate, which they have used to override Governor Josh Stein on major legislation. Flipping just a handful of seats would restore meaningful executive power.\n\nTarget districts cluster in two areas:\n- **Research Triangle suburbs** — rapid demographic change in Wake and Durham counties\n- **Charlotte exurbs** — presidential margins have shifted D by 5+ points since 2016\n\nSee [FLIP NC](https://www.flipnc.org) for district-level targeting data and candidate resources. A strong performance at the **top of the ticket** — particularly in judicial races — will be critical to moving these seats.',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'DEMO',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-34', 'Open',     '', 'R+3',  'R+1',  'Supermajority breaker'],
+          ['SD-42', 'B. Harris','', 'R+7',  'R+3',  ''],
+          ['SD-16', 'T. Moore', '', 'D+6',  'D+7',  'Incumbent running'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'minnesota',
+    name: 'Minnesota',
+    flag: '\u26F7\uFE0F',
+    narrativeHeadline: 'Defending a narrow Senate majority in suburban swing seats',
+    narrativeBody: 'Minnesota Democrats hold a **one-seat majority** in the State Senate, making every vulnerable incumbent seat a top-priority hold. The Twin Cities suburbs remain the central terrain.\n\nWhat to watch:\n- **SD-37 and SD-39** — key suburban seats with tight presidential margins\n- **Candidate recruitment** — quality challengers in open seats could shift the math\n- **Top of ticket** — a competitive governor\'s race will shape the whole map\n\n**Early investment** in targeted districts is the decisive variable. The mix of blue-trending exurbs and ancestrally Republican areas that have begun to swing gives Democrats both risk and opportunity on the same map.',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'https://docs.google.com/spreadsheets/d/1oxQ2j83l0ExdTJhhWXUQp-DM9MC7f2fb2JkhgwCCpwQ/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-37', 'Open',     '', 'R+2',  'R+1',  ''],
+          ['SD-39', 'P. Martin','', 'D+7',  'D+8',  'Incumbent running'],
+          ['SD-41', 'C. Berg',  '', 'D+3',  'D+4',  'Priority hold'],
+        ],
+      },
+      label: 'House',
+        url: 'https://docs.google.com/spreadsheets/d/1jDTGBUO1kmRWIchH7T3gCEhxFG8uBlbdL0BL_Kr4Cgc/?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-108', 'Open',    '', 'R+4',  'R+2',  ''],
+          ['HD-097', 'N. Reyes','', 'D+4',  'D+5',  'Incumbent running'],
+          ['HD-111', 'Open',    '', 'R+6',  'R+3',  ''],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'georgia',
+    name: 'Georgia',
+    flag: '\uD83C\uDF51',
+    narrativeHeadline: 'Long-shot pickup opportunities emerging in Atlanta suburbs',
+    narrativeBody: 'Georgia\'s legislative maps remain **heavily gerrymandered** in Republicans\' favor, but suburban Atlanta has shifted dramatically in presidential elections. A small number of districts now have Democratic-leaning presidential margins despite entrenched incumbent advantages.\n\nWhat makes these races viable:\n- **Presidential margin shift:** Several districts moved D by 8+ points from 2016 to 2024\n- **Incumbent vulnerability:** A handful of R incumbents won by single digits in 2024\n- **Open seats:** Retirements in suburban Gwinnett and Cobb create pick-up opportunities\n\nThese represent both **near-term targets** and the beginning of a longer-term structural effort. National resources should flow only to the most competitive tier.',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'DEMO',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-48', 'Open',    '', 'R+1',  'R+0.5',''],
+          ['SD-56', 'M. Jones','', 'D+5',  'D+6',  'Incumbent running'],
+        ],
+      },
+      {
+        label: 'House',
+        url: 'DEMO',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['HD-108', 'Open',    '', 'R+4',  'R+2',  ''],
+          ['HD-097', 'N. Reyes','', 'D+4',  'D+5',  'Incumbent running'],
+          ['HD-111', 'Open',    '', 'R+6',  'R+3',  ''],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'nebraska',
+    name: 'Nebraska',
+    flag: '\uD83C\uDF3D',
+    narrativeHeadline: 'Breaking the unicameral supermajority',
+    narrativeBody: 'Nebraska\'s **nonpartisan unicameral legislature** has a de facto Republican supermajority that has passed restrictive legislation with minimal opposition. Several Omaha-area seats present genuine pickup opportunities.\n\nUnique dynamics in Nebraska:\n- **Nonpartisan ballot:** Party affiliation doesn\'t appear — candidate name ID matters enormously\n- **Omaha concentration:** Most competitive seats cluster in the metro area\n- **Supermajority threshold:** Flipping ~3 seats breaks the blocking threshold\n- **Coalition building:** Labor, education, and healthcare groups have been active in targeted districts\n\nBecause the ballot does not list party, **early name recognition investment** and strong endorsement networks are more decisive here than in any other state on this list.',
+    sheets: [
+      {
+        label: 'Unicameral',
+        url: 'DEMO',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['LD-08', 'Open',    '', 'R+5',  'R+2',  'Nonpartisan ballot'],
+          ['LD-21', 'B. Jones','', 'R+8',  'R+4',  ''],
+          ['LD-39', 'K. Walsh','', 'D+3',  'D+4',  'Incumbent running'],
+        ],
+      },
+    ],
+  },
+];
+
+// =============================================================================
+//   STOP EDITING HERE — everything below is the engine that runs the site.
+//   You don't need to touch any of it.
+// =============================================================================
+
+// ─── Apply columns + filterBy to a data object ───────────────────────────────
+function applyDisplayRules(data, sheetCfg) {
+  var headers = data.headers.slice();
+  var rows = data.rows.slice();
+
+  // filterBy: only keep rows where column value matches one of the listed values
+  if (sheetCfg.filterBy) {
+    var filterKeys = Object.keys(sheetCfg.filterBy);
+    rows = rows.filter(function(row) {
+      return filterKeys.every(function(col) {
+        var ci = headers.indexOf(col);
+        if (ci === -1) return true;
+        var allowed = sheetCfg.filterBy[col];
+        return allowed.indexOf(String(row[ci] != null ? row[ci] : '')) !== -1;
+      });
+    });
+  }
+
+  // columns: only show specified columns, in the specified order
+  if (sheetCfg.columns && sheetCfg.columns.length) {
+    var colIndices = sheetCfg.columns.map(function(col) { return headers.indexOf(col); })
+                      .filter(function(i) { return i !== -1; });
+    rows = rows.map(function(row) {
+      return colIndices.map(function(i) { return row[i] != null ? row[i] : ''; });
+    });
+    headers = colIndices.map(function(i) { return headers[i]; });
+  }
+
+  return { headers: headers, rows: rows };
+}
+
+// ─── Data fetching ────────────────────────────────────────────────────────────
+function fetchSheet(sheetCfg) {
+  var promise;
+
+  if (sheetCfg.url && sheetCfg.url !== 'DEMO') {
+    var url = sheetCfg.url;
+    var idMatch = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9_-]+)/);
+    if (!idMatch) return Promise.reject(new Error('Invalid Google Sheets URL'));
+    var sheetId = idMatch[1];
+    var gidMatch = url.match(/[#&?]gid=(\d+)/);
+    var gid = gidMatch ? gidMatch[1] : '0';
+
+    promise = fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:json&gid=' + gid)
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
+        var table = json.table;
+        var headers = table.cols.map(function(c) { return c.label || c.id; });
+        var rows = table.rows.map(function(row) {
+          return (row.c || []).map(function(cell) { return cell ? (cell.f != null ? cell.f : cell.v != null ? cell.v : '') : ''; });
+        });
+        return { headers: headers, rows: rows };
+      })
+      .catch(function() {
+        return fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/export?format=csv&gid=' + gid)
+          .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.text();
+          })
+          .then(function(text) {
+            var parsed = parseCSV(text);
+            if (!parsed.length) throw new Error('Empty sheet');
+            return { headers: parsed[0], rows: parsed.slice(1) };
+          });
+      });
+  } else {
+    promise = Promise.resolve({
+      headers: sheetCfg.headers || ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+      rows:    sheetCfg.rows    || [],
+    });
+  }
+
+  return promise.then(function(data) {
+    return applyDisplayRules(data, sheetCfg);
+  });
+}
+
+function parseCSV(text) {
+  var rows = [];
+  var lines = text.split(/\r?\n/);
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (!line.trim()) continue;
+    var cols = [], cur = '', inQ = false;
+    for (var j = 0; j < line.length; j++) {
+      var c = line[j];
+      if (c === '"') inQ = !inQ;
+      else if (c === ',' && !inQ) { cols.push(cur); cur = ''; }
+      else cur += c;
+    }
+    cols.push(cur);
+    rows.push(cols);
+  }
+  return rows;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  TABLE RENDERING
+// ─────────────────────────────────────────────────────────────────────────────
+function detectElection(headers) {
+  return /margin|party|district|chamber|incumbent|lean|rating|dem|rep/.test(headers.join(' ').toLowerCase());
+}
+
+function colorize(td, header, val) {
+  var h = header.toLowerCase(), v = val.toLowerCase();
+  // 2024 Prez Margin — D+x blue, R+x red
+  if (/margin|prez|2024/.test(h)) {
+    if (/^d\+/.test(v)) { td.className = 'cell-d'; return; }
+    if (/^r\+/.test(v)) { td.className = 'cell-r'; return; }
+  }
+  // Last Election — same logic
+  if (/last|election/.test(h)) {
+    if (/^d\+/.test(v)) { td.className = 'cell-d'; return; }
+    if (/^r\+/.test(v)) { td.className = 'cell-r'; return; }
+  }
+}
+
+function buildTable(data, pane) {
+  var headers = data.headers, rows = data.rows;
+  var sortCol = -1, sortDir = 1, page = 0;
+  var filtered = rows.slice();
+  var isElec = detectElection(headers);
+
+  function render() {
+    var pageRows = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+    var total = filtered.length;
+    pane.querySelector('.row-count').textContent = total.toLocaleString() + ' row' + (total !== 1 ? 's' : '');
+
+    var head = pane.querySelector('thead tr');
+    head.innerHTML = '';
+    headers.forEach(function(h, i) {
+      var th = document.createElement('th');
+      th.textContent = h;
+      if (sortCol === i) th.className = sortDir === 1 ? 'asc' : 'desc';
+      (function(idx) {
+        th.onclick = function() { sortCol === idx ? sortDir *= -1 : (sortCol = idx, sortDir = 1); applyFilter(); };
+      })(i);
+      head.appendChild(th);
+    });
+
+    var body = pane.querySelector('tbody');
+    body.innerHTML = '';
+    if (!pageRows.length) {
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      td.colSpan = headers.length;
+      td.style.cssText = 'text-align:center;padding:1.5rem;color:var(--muted)';
+      td.textContent = 'No rows match.';
+      tr.appendChild(td); body.appendChild(tr);
+    } else {
+      pageRows.forEach(function(row) {
+        var tr = document.createElement('tr');
+        headers.forEach(function(h, ci) {
+          var td = document.createElement('td');
+          var val = String(row[ci] != null ? row[ci] : '');
+          td.textContent = val; td.title = val;
+          if (isElec) colorize(td, h, val);
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+      });
+    }
+
+    var pg = pane.querySelector('.pagination');
+    pg.innerHTML = '';
+    var pages = Math.ceil(total / PAGE_SIZE);
+    if (pages > 1) {
+      var prev = document.createElement('button');
+      prev.className = 'pg-btn'; prev.textContent = '← Prev'; prev.disabled = page === 0;
+      prev.onclick = function() { page--; render(); };
+      pg.appendChild(prev);
+      var info = document.createElement('span'); info.className = 'pg-info';
+      info.textContent = (page + 1) + ' / ' + pages; pg.appendChild(info);
+      var next = document.createElement('button');
+      next.className = 'pg-btn'; next.textContent = 'Next →'; next.disabled = page >= pages - 1;
+      next.onclick = function() { page++; render(); };
+      pg.appendChild(next);
+    }
+  }
+
+  function applyFilter() {
+    var search = pane.querySelector('.search-input').value.toLowerCase();
+    var ci = pane.querySelector('.col-sel').value;
+    var cv = pane.querySelector('.val-sel').value;
+    filtered = rows.filter(function(row) {
+      if (search && !row.some(function(c) { return String(c).toLowerCase().indexOf(search) >= 0; })) return false;
+      if (ci !== '' && cv !== '' && String(row[ci] != null ? row[ci] : '') !== cv) return false;
+      return true;
+    });
+    if (sortCol >= 0) {
+      filtered = filtered.slice().sort(function(a, b) {
+        var av = a[sortCol] != null ? a[sortCol] : '', bv = b[sortCol] != null ? b[sortCol] : '';
+        var an = parseFloat(av), bn = parseFloat(bv);
+        if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
+        return String(av).localeCompare(String(bv)) * sortDir;
+      });
+    }
+    page = 0; render();
+  }
+
+  var cs = pane.querySelector('.col-sel');
+  var vs = pane.querySelector('.val-sel');
+
+  cs.innerHTML = '<option value="">All columns</option>';
+  headers.forEach(function(h, i) {
+    var o = document.createElement('option'); o.value = i; o.textContent = h; cs.appendChild(o);
+  });
+
+  cs.onchange = function() {
+    vs.innerHTML = '<option value="">All values</option>';
+    if (cs.value !== '') {
+      var seen = {};
+      rows.forEach(function(r) { var v = String(r[cs.value] != null ? r[cs.value] : ''); seen[v] = true; });
+      Object.keys(seen).sort().forEach(function(v) {
+        var o = document.createElement('option'); o.value = v; o.textContent = v || '(empty)'; vs.appendChild(o);
+      });
+    }
+    applyFilter();
+  };
+  vs.onchange = applyFilter;
+  pane.querySelector('.search-input').oninput = applyFilter;
+
+  pane.querySelector('.export-btn').onclick = function() {
+    var csv = [headers].concat(filtered).map(function(r) {
+      return r.map(function(c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(',');
+    }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'data.csv'; a.click();
+  };
+
+  render();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  PAGE CONSTRUCTION
+// ─────────────────────────────────────────────────────────────────────────────
+function buildPage() {
+  var nav     = document.getElementById('mastheadNav');
+  var jumpNav = document.getElementById('jumpNav');
+  var main    = document.getElementById('mainContent');
+
+  STATES.forEach(function(state) {
+    var a = document.createElement('a');
+    a.className = 'nav-link'; a.href = '#' + state.id; a.textContent = state.name;
+    nav.appendChild(a);
+
+    var jl = document.createElement('a');
+    jl.className = 'jump-link'; jl.href = '#' + state.id;
+    jl.innerHTML = '<span class="jflag">' + state.flag + '</span>' + state.name;
+    jumpNav.appendChild(jl);
+
+    var section = document.createElement('section');
+    section.className = 'state-section'; section.id = state.id;
+    var hasMultiple = state.sheets.length > 1;
+
+    var html = '<div class="state-header">'
+      + '<div class="state-flag">' + state.flag + '</div>'
+      + '<div class="state-header-text">'
+      + '<div class="state-name">' + state.name + '</div>'
+      + '<div class="state-meta">' + state.sheets.map(function(s) { return s.label; }).join(' · ') + ' · 2026 Cycle</div>'
+      + '</div></div>'
+      + '<div class="narrative">'
+      + '<div class="narrative-headline">' + state.narrativeHeadline + '</div>'
+      + '<div class="narrative-body">' + renderMarkdown(state.narrativeBody) + '</div>'
+      + '</div>';
+
+    if (hasMultiple) {
+      html += '<div class="sheet-tabs">'
+        + state.sheets.map(function(s, i) {
+            return '<button class="sheet-tab' + (i === 0 ? ' active' : '') + '" data-idx="' + i + '">' + s.label + '</button>';
+          }).join('')
+        + '</div>';
+    }
+
+    state.sheets.forEach(function(s, i) {
+      html += '<div class="sheet-pane" data-pane="' + i + '" style="' + (i > 0 ? 'display:none' : '') + '">'
+        + '<div class="filter-bar">'
+        + '<input class="search-input" type="text" placeholder="Search\u2026">'
+        + '<select class="filter-select col-sel"></select>'
+        + '<select class="filter-select val-sel"></select>'
+        + '<button class="export-btn">CSV \u2193</button>'
+        + '<span class="row-count"></span>'
+        + '</div>'
+        + '<div class="table-wrap"><table><thead><tr></tr></thead><tbody></tbody></table></div>'
+        + '<div class="pagination"></div>'
+        + '</div>';
+    });
+
+    html += '<div class="legend">'
+      + '<span class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Democratic</span>'
+      + '<span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Republican</span>'
+      + '<span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span>Toss-up / Reach</span>'
+      + '</div>';
+
+    section.innerHTML = html;
+    main.appendChild(section);
+
+    if (hasMultiple) {
+      section.querySelectorAll('.sheet-tab').forEach(function(tab) {
+        tab.onclick = function() {
+          section.querySelectorAll('.sheet-tab').forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          section.querySelectorAll('.sheet-pane').forEach(function(p) {
+            p.style.display = p.dataset.pane === tab.dataset.idx ? '' : 'none';
+          });
+        };
+      });
+    }
+
+    state.sheets.forEach(function(sheetCfg, i) {
+      var pane = section.querySelector('.sheet-pane[data-pane="' + i + '"]');
+      var tw   = pane.querySelector('.table-wrap');
+      tw.innerHTML = '<div class="sheet-status"><span class="spinner"></span>Loading\u2026</div>';
+      fetchSheet(sheetCfg).then(function(data) {
+        tw.innerHTML = '<table><thead><tr></tr></thead><tbody></tbody></table>';
+        buildTable(data, pane);
+      }).catch(function(err) {
+        tw.innerHTML = '<div class="sheet-status">Could not load data: ' + err.message + '</div>';
+      });
+    });
+  });
+
+  // Jump nav active on scroll
+  var sections  = document.querySelectorAll('.state-section');
+  var jumpLinks = document.querySelectorAll('.jump-link');
+  sections.forEach(function(s) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          jumpLinks.forEach(function(l) {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.2 }).observe(s);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────────────────────────
+document.getElementById('dateline').textContent =
+  new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+document.getElementById('footerDate').textContent =
+  'Updated ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+buildPage();
+</script>
+</body>
+</html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win Local</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:        #0e0e0e;
+  --paper:      #f5f1e8;
+  --paper-dark: #e9e3d5;
+  --white:      #ffffff;
+  --rule:       #0e0e0e;
+  --blue:       #1a3a6b;
+  --blue-lt:    #e8edf5;
+  --red:        #b82b2b;
+  --gold:       #b8943e;
+  --muted:      #6b6258;
+  --border:     #ccc6b8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── MASTHEAD ─────────────────────────────────────────────── */
+.masthead {
+  background: var(--paper);
+  border-bottom: 3px double var(--rule);
+  padding: 0 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0 0.6rem;
+}
+.brand { display: flex; flex-direction: column; line-height: 1; }
+.brand-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.masthead-nav { display: flex; gap: 0; align-items: center; }
+.nav-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.3rem 0.9rem;
+  border-left: 1px solid var(--border);
+  transition: color 0.15s;
+}
+.nav-link:first-child { border-left: none; }
+.nav-link:hover { color: var(--blue); }
+.dateline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border-top: 1px solid var(--border);
+  padding: 0.3rem 0;
+  text-align: right;
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 4px solid var(--gold);
+}
+.hero-kicker {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  max-width: 680px;
+  margin-bottom: 0.75rem;
+}
+.hero-body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.88rem;
+  color: #bbb;
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+/* ── JUMP NAV ─────────────────────────────────────────────── */
+.state-jump-nav {
+  background: var(--paper-dark);
+  border-bottom: 1.5px solid var(--rule);
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  position: sticky;
+  top: 68px;
+  z-index: 100;
+  scrollbar-width: none;
+}
+.state-jump-nav::-webkit-scrollbar { display: none; }
+.jump-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-right: 1.2rem;
+  border-right: 1px solid var(--border);
+  margin-right: 0.25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.jump-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+.jump-link:hover { color: var(--ink); border-bottom-color: var(--border); }
+.jump-link.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 500; }
+.jump-link .jflag { font-size: 0.85rem; }
+
+/* ── PAGE BODY ────────────────────────────────────────────── */
+.page-body { display: block; }
+.main { max-width: 1200px; margin: 0 auto; overflow: hidden; }
+
+/* ── STATE SECTION ────────────────────────────────────────── */
+.state-section {
+  border-bottom: 2px solid var(--rule);
+  padding: 2rem 2.5rem 2.5rem;
+}
+.state-section:last-child { border-bottom: none; }
+.state-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+.state-flag { font-size: 2.2rem; line-height: 1; flex-shrink: 0; margin-top: 0.1rem; }
+.state-header-text { flex: 1; }
+.state-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.state-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* ── NARRATIVE ────────────────────────────────────────────── */
+.narrative {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem 2.5rem;
+  padding: 1.25rem 0 1.5rem;
+  margin-bottom: 1.5rem;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.narrative-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.narrative-headline::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 0.55rem;
+}
+.narrative-body { font-size: 0.82rem; color: #3a3530; line-height: 1.7; }
+.narrative-body p { margin-bottom: 0.55rem; }
+.narrative-body p:last-child { margin-bottom: 0; }
+.narrative-body strong { font-weight: 600; color: var(--ink); }
+.narrative-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; transition: color 0.12s; }
+.narrative-body a:hover { color: var(--gold); }
+.narrative-body ul { margin: 0.4rem 0 0.55rem 0; padding-left: 0; list-style: none; }
+.narrative-body ul:last-child { margin-bottom: 0; }
+.narrative-body ul li { position: relative; padding-left: 1rem; margin-bottom: 0.28rem; }
+.narrative-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 500; font-size: 0.72rem; top: 0.06em; }
+
+/* ── SHEET TABS ───────────────────────────────────────────── */
+.sheet-tabs { display: flex; border-bottom: 2px solid var(--ink); overflow-x: auto; }
+.sheet-tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.1rem;
+  border: none;
+  border-right: 1px solid var(--border);
+  background: var(--paper-dark);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s;
+}
+.sheet-tab:hover { background: var(--paper); color: var(--ink); }
+.sheet-tab.active { background: var(--white); color: var(--ink); font-weight: 500; border-bottom: 2px solid var(--white); margin-bottom: -2px; }
+
+/* ── FILTER BAR ───────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--white);
+  padding: 0.55rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  border-top: none;
+  border-bottom: none;
+}
+.search-input {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  border: 1.5px solid var(--border);
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+  width: 200px;
+  transition: border-color 0.15s;
+}
+.search-input:focus { border-color: var(--blue); }
+.filter-select {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.67rem;
+  padding: 0.3rem 0.55rem;
+  border: 1.5px solid var(--border);
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+.row-count { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: var(--muted); margin-left: auto; }
+.export-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.75rem;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.export-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ── TABLE ────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; border: 1.5px solid var(--ink); border-top: none; }
+table { width: 100%; border-collapse: collapse; font-size: 0.76rem; background: var(--white); }
+thead { background: var(--ink); color: var(--paper); }
+th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.57rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.1s;
+}
+th:hover { background: var(--blue); }
+th.asc::after { content: ' ↑'; opacity: 0.6; }
+th.desc::after { content: ' ↓'; opacity: 0.6; }
+tbody tr { border-bottom: 1px solid var(--paper-dark); transition: background 0.08s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #fff9f0; }
+tbody tr:nth-child(even) { background: #faf7f1; }
+tbody tr:nth-child(even):hover { background: #fff9f0; }
+td {
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 0.38rem 0.85rem;
+  border-right: 1px solid var(--paper-dark);
+  white-space: nowrap;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+td:last-child, th:last-child { border-right: none; }
+.cell-d   { color: var(--blue); font-weight: 500; }
+.cell-r   { color: var(--red);  font-weight: 500; }
+.cell-toss{ color: var(--gold); font-weight: 500; }
+
+/* ── PAGINATION ───────────────────────────────────────────── */
+.pagination { display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem 0; justify-content: flex-end; }
+.pg-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  padding: 0.28rem 0.7rem;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.pg-btn:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+.pg-btn:disabled { opacity: 0.3; cursor: default; }
+.pg-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: var(--muted); padding: 0 0.5rem; }
+
+/* ── LOADING ──────────────────────────────────────────────── */
+.sheet-status {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  background: var(--white);
+  border: 1.5px solid var(--ink);
+  border-top: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--ink);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── LEGEND ───────────────────────────────────────────────── */
+.legend { display: flex; gap: 1.2rem; flex-wrap: wrap; padding: 0.5rem 0 0; border-top: 1px solid var(--border); margin-top: 0.5rem; }
+.legend-item { display: flex; align-items: center; gap: 0.35rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.57rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer {
+  border-top: 3px double var(--rule);
+  padding: 1.5rem 2.5rem;
+  background: var(--paper-dark);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 860px) { .narrative { grid-template-columns: 1fr; gap: 0.6rem; } }
+@media (max-width: 600px) {
+  .masthead, .state-section { padding-left: 1rem; padding-right: 1rem; }
+  .state-jump-nav { padding: 0 1rem; }
+  .hero { padding: 1.5rem 1rem; }
+  .masthead-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-eyebrow">Election Intelligence</span>
+      <span class="brand-name">Win Local</span>
+    </div>
+    <nav class="masthead-nav" id="mastheadNav"></nav>
+  </div>
+  <div class="dateline" id="dateline"></div>
+</header>
+
+<section class="hero">
+  <span class="hero-kicker">2026 State Legislative Landscape</span>
+  <h1 class="hero-headline">Tracking every competitive district that can change who holds power.</h1>
+  <p class="hero-body">Win Local monitors Democratic opportunities across state chambers — from must-hold seats to Republican supermajority breakers. Data is updated as new information becomes available.</p>
+</section>
+
+<nav class="state-jump-nav" id="jumpNav">
+  <span class="jump-label">Jump to</span>
+</nav>
+
+<div class="page-body">
+  <main class="main" id="mainContent"></main>
+</div>
+
+<footer>
+  <span>Win Local · 2026 Election Intelligence</span>
+  <span id="footerDate"></span>
+</footer>
+
+<script>
+const PAGE_SIZE = 50;
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  MARKDOWN RENDERER  —  **bold**, [text](url), - bullets, blank line = <p>
+// ─────────────────────────────────────────────────────────────────────────────
+function renderMarkdown(md) {
+  const lines = md.split('\n');
+  const out = [];
+  let inList = false;
+  const fmt = function(s) {
+    return s
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[(.+?)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  };
+  for (var i = 0; i < lines.length; i++) {
+    var t = lines[i].trim();
+    if (/^[-*]\s+/.test(t)) {
+      if (!inList) { out.push('<ul>'); inList = true; }
+      out.push('<li>' + fmt(t.replace(/^[-*]\s+/, '')) + '</li>');
+    } else {
+      if (inList) { out.push('</ul>'); inList = false; }
+      if (t) out.push('<p>' + fmt(t) + '</p>');
+    }
+  }
+  if (inList) out.push('</ul>');
+  return out.join('');
+}
+
+// =============================================================================
+//
+//   ██╗    ██╗██╗███╗   ██╗    ██╗      ██████╗  ██████╗ █████╗ ██╗
+//   ██║    ██║██║████╗  ██║    ██║     ██╔═══██╗██╔════╝██╔══██╗██║
+//   ██║ █╗ ██║██║██╔██╗ ██║    ██║     ██║   ██║██║     ███████║██║
+//   ██║███╗██║██║██║╚██╗██║    ██║     ██║   ██║██║     ██╔══██║██║
+//   ╚███╔███╔╝██║██║ ╚████║    ███████╗╚██████╔╝╚██████╗██║  ██║███████╗
+//    ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝    ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝
+//
+//   THIS IS THE ONLY SECTION YOU NEED TO EDIT.
+//   Everything below the "STOP EDITING" line is hands-off.
+//
+// =============================================================================
+//
+//  HOW TO EDIT A STATE
+//  ───────────────────
+//  Each state is one block inside the STATES list. The fields are:
+//
+//    id                unique slug, used for page anchor links — don't change
+//    name              display name shown on the page
+//    flag              emoji next to the state name
+//    narrativeHeadline italic pull-quote headline
+//    narrativeBody     paragraph text (see FORMATTING below)
+//    sheets            list of tabs — each tab is one table on the page
+//
+//  EACH SHEET (TAB) HAS THESE FIELDS:
+//  ────────────────────────────────────
+//    label       the tab name shown above the table
+//    url         'DEMO' to use the rows below, or a Google Sheets URL
+//    headers     column names — always use these six (in any order):
+//                  'District', 'Incumbent', 'Challenger',
+//                  'Last Election', '2024 Prez Margin', 'Notes'
+//    rows        one array per row, values in same order as headers
+//
+//  OPTIONAL DISPLAY CONTROLS (add these to any sheet):
+//  ─────────────────────────────────────────────────────
+//    columns: ['District', 'Incumbent', '2024 Prez Margin']
+//        → only show these columns on the page (hide the rest)
+//          leave out to show all columns
+//
+//    filterBy: { 'Last Election': ['R+5', 'R+3'], '2024 Prez Margin': ['D+2'] }
+//        → only show rows where the column value matches one of the listed values
+//          leave out to show all rows
+//
+//  EXAMPLE WITH BOTH OPTIONS:
+//  ───────────────────────────
+//    {
+//      label: 'Targets Only',
+//      url: 'https://docs.google.com/...',
+//      columns: ['District', 'Incumbent', 'Challenger', '2024 Prez Margin', 'Notes'],
+//      filterBy: { 'Last Election': ['R+2', 'R+4', 'R+6'] },
+//    },
+//
+//  CONNECTING A GOOGLE SHEET
+//  ──────────────────────────
+//  1. In Google Sheets: Share → "Anyone with the link can view"
+//  2. Copy the URL from your browser
+//  3. Replace url: 'DEMO' with url: 'https://docs.google.com/...'
+//  (headers/rows are ignored when a real URL is used)
+//
+//  NARRATIVE BODY FORMATTING
+//  ──────────────────────────
+//    **bold**               → bold text
+//    [text](https://url)    → clickable link
+//    - bullet               → bullet point (dash at start of line)
+//    \n\n                   → new paragraph
+//
+// =============================================================================
+var STATES = [
+  {
+    id: 'wisconsin',
+    name: 'Wisconsin',
+    flag: '\uD83E\uDDC0',
+    narrativeHeadline: 'Democrats within striking distance of both chambers',
+    narrativeBody: 'Following the **2022 redistricting**, Wisconsin\'s Senate and Assembly maps present a genuine path to Democratic majorities. The Senate map features several suburban Milwaukee and Madison-area districts where presidential margins have tightened sharply.\n\nKey dynamics heading into 2026:\n- **Senate:** Democrats need a net gain of ~3 seats to flip the chamber\n- **Assembly:** A strong top-of-ticket performance could produce a majority flip\n- **Top priority:** Open seats in suburban Milwaukee and Waukesha County corridors\n\nA strong top-of-ticket performance — particularly in a governor\'s race — could lift candidates across the map simultaneously in both chambers.',
+    sheets: [
+      {
+        label: 'Senate',
+        url: 'https://docs.google.com/spreadsheets/d/1FwbB0-QGMTVF2Ewz1UmtsKHwEzPRrFYDfoIABuwjhUk/edit?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['SD-08', 'Open',       '',       'R+3',  'D+1',  ''],
+          ['SD-20', 'Open',       '',       'R+2',  'D+0.5','Toss-up'],
+          ['SD-32', 'J. Williams','',       'D+4',  'D+6',  'Incumbent running'],
+        ],
+      },
+      {
+        label: 'Assembly',
+        url: 'https://docs.google.com/spreadsheets/d/10rYY9lV4aQD5ElfmjATUi_9oBYdVFdhT3E-l9ATVOOY/edit?usp=sharing',
+        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
+        rows: [
+          ['AD-25', 'T. Brown',   '', 'R+5',  'R+1',  ''],
+          ['AD-89', 'M. Garcia',  '', 'D+7',  'D+8',  ''],
+          ['AD-42', 'Open',       '', 'R+2',  'R+0.5','Open seat'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'arizona',
+    name: 'Arizona',
+    flag: '\uD83C\uDF35',
+    narrativeHeadline: 'Maricopa County is the battleground',
+    narrativeBody: 'Arizona\'s legislative maps have become **meaningfully more competitive** following the 2020 redistricting. Democrats need a net gain of just two seats in each chamber to reach parity.\n\nThe path runs almost entirely through **suburban Maricopa County**:\n- Several incumbents in swing-coded districts are not seeking re-election\n- Open-seat opportunities significantly reduce the incumbent advantage\n- Presidential margins in key districts shifted D by 4-7 points from 2016 to 2024\n\nSee [Dave\'s Redistricting App](https://davesredistricting.org) for detailed district-level maps.',
+    sheets: [
+      {
+        label: 'Senate',
         url: 'https://docs.google.com/spreadsheets/d/1KcWgUTT2l1lD75Pf2IE9K_QNZdrBzfuJo07lrRmxfk0/edit?usp=sharing',
         headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
         rows: [
