@@ -423,7 +423,7 @@ footer {
 <header class="masthead">
   <div class="masthead-inner">
     <div class="brand">
-      <span class="brand-eyebrow">Election Intelligence</span>
+      <span class="brand-eyebrow">Progress Report</span>
       <span class="brand-name">Win Local</span>
     </div>
     <nav class="masthead-nav" id="mastheadNav"></nav>
@@ -433,7 +433,7 @@ footer {
 
 <section class="hero">
   <span class="hero-kicker">2026 State Legislative Landscape</span>
-  <h1 class="hero-headline">Tracking every competitive district that can change who holds power.</h1>
+  <h1 class="hero-headline">Tracking every competitive district in flippable legislatures.</h1>
   <p class="hero-body">Win Local monitors Democratic opportunities across state chambers — from must-hold seats to Republican supermajority breakers. Data is updated as new information becomes available.</p>
 </section>
 
@@ -553,7 +553,7 @@ var STATES = [
     name: 'Wisconsin',
     flag: '\uD83E\uDDC0',
     narrativeHeadline: 'Democrats within striking distance of both chambers',
-    narrativeBody: 'Following the **2022 redistricting**, Wisconsin\'s Senate and Assembly maps present a genuine path to Democratic majorities. The Senate map features several suburban Milwaukee and Madison-area districts where presidential margins have tightened sharply.\n\nKey dynamics heading into 2026:\n- **Senate:** Democrats need a net gain of ~3 seats to flip the chamber\n- **Assembly:** A strong top-of-ticket performance could produce a majority flip\n- **Top priority:** Open seats in suburban Milwaukee and Waukesha County corridors\n\nA strong top-of-ticket performance — particularly in a governor\'s race — could lift candidates across the map simultaneously in both chambers.',
+    narrativeBody: 'All it took was a decade of work to flip the state Supreme Court and voila, the GOP\'s gerrymander fell and competitive elections returned to Wisconsin.\n\nOnce in a deep minority, Democrats have a legitimate chance to flip both the Assembly and state Senate. The Senate map features several suburban Milwaukee and Madison-area districts where presidential margins have tightened sharply.\n\nKey dynamics heading into 2026:\n- **Senate:** Democrats need a net gain of two seats to flip the chamber, and the incumbent Republicans in two of their top three targets — all districts that would have voted for Kamala Harris — have already retired\n- **Assembly:** They\'ll need five seats, but there are enough close districts to make this viable\n- **Top priority:** Open seats in suburban Milwaukee and Waukesha County corridors',
     sheets: [
       {
         label: 'Senate',
@@ -582,7 +582,7 @@ var STATES = [
     name: 'Arizona',
     flag: '\uD83C\uDF35',
     narrativeHeadline: 'Maricopa County is the battleground',
-    narrativeBody: 'Arizona\'s legislative maps have become **meaningfully more competitive** following the 2020 redistricting. Democrats need a net gain of just two seats in each chamber to reach parity.\n\nThe path runs almost entirely through **suburban Maricopa County**:\n- Several incumbents in swing-coded districts are not seeking re-election\n- Open-seat opportunities significantly reduce the incumbent advantage\n- Presidential margins in key districts shifted D by 4-7 points from 2016 to 2024\n\nSee [Dave\'s Redistricting App](https://davesredistricting.org) for detailed district-level maps.',
+    narrativeBody: 'Arizona\'s legislative maps have become **meaningfully more competitive** following the 2020 redistricting. Democrats need a net gain of just two seats in each chamber to reach parity.\n\nThe path runs almost entirely through **suburban Maricopa County**:\n- Several incumbents in swing districts are not seeking re-election, including two in the state Senate\n- Two House districts were won by Trump by less than 2 points in 2024\n- Presidential margins in key districts shifted left by 4-7 points from 2016 to 2024',
     sheets: [
       {
         label: 'Senate',
@@ -611,7 +611,7 @@ var STATES = [
     name: 'Michigan',
     flag: '\uD83D\uDE97',
     narrativeHeadline: 'Defending the trifecta while eyeing a supermajority',
-    narrativeBody: 'Democrats hold a **narrow majority in the Michigan House** after flipping it in 2022 with the help of new independent maps. Several members represent districts with modest presidential margins, making the chamber a must-defend priority.\n\n- **Must-hold:** Several swing seats in metro Detroit and Grand Rapids suburbs\n- **Pickup targets:** A handful of R-held districts where Biden/Harris ran competitively\n- **Supermajority threshold:** A net gain of ~3 would give Democrats veto-proof control\n\nCandidate recruitment and **early financial investment** in competitive districts are the decisive variables heading into the cycle.',
+    narrativeBody: 'Democrats hold a bare minimum majority in the Michigan House after flipping it in 2022 with the help of new independent maps. They lost control of the state Senate in 2024, but have a path to victory in a good year for Democrats. That starts with a special election in May.\n\n- **Democrats have a one-seat majority in the House** and need to flip four seats in the Senate\n- **There are 12 House districts** that were decided by five or fewer points in 2024\n- **Competitive US Senate and gubernatorial races** could shape down ballot results',
     sheets: [
       {
         label: 'Senate',
@@ -641,8 +641,8 @@ var STATES = [
     id: 'pennsylvania',
     name: 'Pennsylvania',
     flag: '\uD83D\uDD14',
-    narrativeHeadline: 'Senate majority requires a net +2; House majority must hold',
-    narrativeBody: 'Pennsylvania presents a **two-front challenge** in 2026: defending the narrow House majority while aggressively targeting a Senate flip.\n\n**Senate:** Republicans currently hold the chamber, but Democrats need only a **net gain of 2 seats** — with the Lieutenant Governor breaking ties — to reach functional control. The path runs through suburban Philadelphia and Pittsburgh collar districts.\n\n**House:** The Democratic majority is currently maintained by a slim margin and faces early tests:\n- Ongoing 2026 special elections in key suburban districts\n- A challenging map with several seats carried narrowly at the presidential level\n- Open seats created by retirements in competitive turf',
+    narrativeHeadline: 'Shooting for a trifecta — or to avoid one',
+    narrativeBody: 'Gov. Josh Shapiro is likely cruising to re-election, but the more progressive elements of his agenda have — ostensibly — been halted by the Democrats\' ultra-narrow majority in the House and the GOP\'s hold on the state Senate.\n\nThe path runs through **suburban Philadelphia and Pittsburgh collar districts**.\n\n- **Democrats have a one-seat lead in the state House** that they could expand by two to four seats in a good year\n- **The Senate has fewer opportunities**, but they only need to flip two seats to retake the majority\n- **Open seats** created by retirements in competitive turf',
     sheets: [
       {
         label: 'Senate',
@@ -666,35 +666,6 @@ var STATES = [
       },
     ],
   },
-  {
-    id: 'north-carolina',
-    name: 'North Carolina',
-    flag: '\uD83C\uDFD4\uFE0F',
-    narrativeHeadline: 'Cracking the Republican supermajority',
-    narrativeBody: 'Republicans hold a **veto-proof supermajority** in the North Carolina Senate, which they have used to override Governor Josh Stein on major legislation. Flipping just a handful of seats would restore meaningful executive power.\n\nTarget districts cluster in two areas:\n- **Research Triangle suburbs** — rapid demographic change in Wake and Durham counties\n- **Charlotte exurbs** — presidential margins have shifted D by 5+ points since 2016\n\nSee [FLIP NC](https://www.flipnc.org) for district-level targeting data and candidate resources. A strong performance at the **top of the ticket** — particularly in judicial races — will be critical to moving these seats.',
-    sheets: [
-      {
-        label: 'Senate',
-        url: 'https://docs.google.com/spreadsheets/d/1onwQ_hkUDTgjUpMGNB0xOlRPYm0LcLO53xuGhRq0djc/?usp=sharing',
-        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
-        rows: [
-          ['SD-34', 'Open',     '', 'R+3',  'R+1',  'Supermajority breaker'],
-          ['SD-42', 'B. Harris','', 'R+7',  'R+3',  ''],
-          ['SD-16', 'T. Moore', '', 'D+6',  'D+7',  'Incumbent running'],
-        ],
-      },
-    {
-        label: 'House',
-        url: 'https://docs.google.com/spreadsheets/d/1jDTGBUO1kmRWIchH7T3gCEhxFG8uBlbdL0BL_Kr4Cgc/?usp=sharing',
-        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
-        rows: [
-          ['HD-108', 'Open',    '', 'R+4',  'R+2',  ''],
-          ['HD-097', 'N. Reyes','', 'D+4',  'D+5',  'Incumbent running'],
-          ['HD-111', 'Open',    '', 'R+6',  'R+3',  ''],
-        ],
-      },
-    ],
-    },
   {
     id: 'minnesota',
     name: 'Minnesota',
@@ -725,29 +696,20 @@ var STATES = [
     ],
   },
   {
-    id: 'georgia',
-    name: 'Georgia',
-    flag: '\uD83C\uDF51',
-    narrativeHeadline: 'Long-shot pickup opportunities emerging in Atlanta suburbs',
-    narrativeBody: 'Georgia\'s legislative maps remain **heavily gerrymandered** in Republicans\' favor, but suburban Atlanta has shifted dramatically in presidential elections. A small number of districts now have Democratic-leaning presidential margins despite entrenched incumbent advantages.\n\nWhat makes these races viable:\n- **Presidential margin shift:** Several districts moved D by 8+ points from 2016 to 2024\n- **Incumbent vulnerability:** A handful of R incumbents won by single digits in 2024\n- **Open seats:** Retirements in suburban Gwinnett and Cobb create pick-up opportunities\n\nThese represent both **near-term targets** and the beginning of a longer-term structural effort. National resources should flow only to the most competitive tier.',
+    id: 'north-carolina',
+    name: 'North Carolina',
+    flag: '\uD83C\uDFD4\uFE0F',
+    narrativeHeadline: 'Cracking the Republican supermajority',
+    narrativeBody: 'Thanks to their new gerrymander and some Democratic turncoats, Republicans hold the narrowest of **veto-proof supermajorities** in the North Carolina Senate, which they have used to override Governor Josh Stein on major legislation.\n\nIt\'ll be tight:\n- **Three House seats** were decided by less than one point in 2024, two of which are controlled by Republicans\n- **Democrats have to defend two Senate seats** that they won by less than a point in 2024',
     sheets: [
       {
         label: 'Senate',
-        url: 'DEMO',
+        url: 'https://docs.google.com/spreadsheets/d/1onwQ_hkUDTgjUpMGNB0xOlRPYm0LcLO53xuGhRq0djc/?usp=sharing',
         headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
         rows: [
-          ['SD-48', 'Open',    '', 'R+1',  'R+0.5',''],
-          ['SD-56', 'M. Jones','', 'D+5',  'D+6',  'Incumbent running'],
-        ],
-      },
-      {
-        label: 'House',
-        url: 'DEMO',
-        headers: ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
-        rows: [
-          ['HD-108', 'Open',    '', 'R+4',  'R+2',  ''],
-          ['HD-097', 'N. Reyes','', 'D+4',  'D+5',  'Incumbent running'],
-          ['HD-111', 'Open',    '', 'R+6',  'R+3',  ''],
+          ['SD-34', 'Open',     '', 'R+3',  'R+1',  'Supermajority breaker'],
+          ['SD-42', 'B. Harris','', 'R+7',  'R+3',  ''],
+          ['SD-16', 'T. Moore', '', 'D+6',  'D+7',  'Incumbent running'],
         ],
       },
     ],
