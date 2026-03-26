@@ -493,6 +493,17 @@ function renderMarkdown(md) {
 //
 // =============================================================================
 //
+//  GOOGLE API KEY (required for hyperlinks in cells)
+//  ──────────────────────────────────────────────────
+//  To display clickable hyperlinks from your Google Sheets:
+//  1. Go to https://console.cloud.google.com
+//  2. Create a project → Enable "Google Sheets API"
+//  3. Go to Credentials → Create API Key → copy it
+//  4. Paste it below between the quotes
+//  Leave as '' if you don't have one (hyperlinks won't show, but data will)
+//
+var GOOGLE_API_KEY = 'AIzaSyCXR2E-aLhjWL06yeC3z2HOxtP3Yyhwk0I';  // ← paste your API key here
+
 //  HOW TO EDIT A STATE
 //  ───────────────────
 //  Each state is one block inside the STATES list. The fields are:
@@ -755,11 +766,14 @@ var STATES = [
 // =============================================================================
 
 // ─── Apply columns + filterBy to a data object ───────────────────────────────
+function cellText(cell) {
+  return typeof cell === 'object' && cell !== null ? (cell.text || '') : String(cell != null ? cell : '');
+}
+
 function applyDisplayRules(data, sheetCfg) {
   var headers = data.headers.slice();
   var rows = data.rows.slice();
 
-  // filterBy: only keep rows where column value matches one of the listed values
   if (sheetCfg.filterBy) {
     var filterKeys = Object.keys(sheetCfg.filterBy);
     rows = rows.filter(function(row) {
@@ -767,12 +781,11 @@ function applyDisplayRules(data, sheetCfg) {
         var ci = headers.indexOf(col);
         if (ci === -1) return true;
         var allowed = sheetCfg.filterBy[col];
-        return allowed.indexOf(String(row[ci] != null ? row[ci] : '')) !== -1;
+        return allowed.indexOf(cellText(row[ci])) !== -1;
       });
     });
   }
 
-  // columns: only show specified columns, in the specified order
   if (sheetCfg.columns && sheetCfg.columns.length) {
     var colIndices = sheetCfg.columns.map(function(col) { return headers.indexOf(col); })
                       .filter(function(i) { return i !== -1; });
@@ -786,6 +799,47 @@ function applyDisplayRules(data, sheetCfg) {
 }
 
 // ─── Data fetching ────────────────────────────────────────────────────────────
+
+// Each cell in data.rows is either a plain string, or an object {text, url}
+// when a hyperlink is present. The renderer handles both cases.
+
+function fetchSheetViaAPI(sheetId, sheetLabel) {
+  // Use Sheets API v4 to get cell values + hyperlinks
+  var encodedLabel = encodeURIComponent(sheetLabel);
+  var apiUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetId
+    + '/values/' + encodedLabel
+    + '?key=' + GOOGLE_API_KEY;
+
+  // Also fetch the hyperlink data via the cellData endpoint
+  var dataUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetId
+    + '?ranges=' + encodedLabel
+    + '&fields=sheets(data(rowData(values(formattedValue,hyperlink))))'
+    + '&key=' + GOOGLE_API_KEY;
+
+  return fetch(dataUrl)
+    .then(function(r) {
+      if (!r.ok) throw new Error('API error ' + r.status);
+      return r.json();
+    })
+    .then(function(json) {
+      var sheetData = json.sheets && json.sheets[0] && json.sheets[0].data && json.sheets[0].data[0];
+      if (!sheetData || !sheetData.rowData || !sheetData.rowData.length) throw new Error('Empty sheet');
+
+      var allRows = sheetData.rowData.map(function(row) {
+        return (row.values || []).map(function(cell) {
+          var text = cell.formattedValue || '';
+          var url  = cell.hyperlink || null;
+          return url ? { text: text, url: url } : text;
+        });
+      });
+
+      // First row = headers (plain text only)
+      var headers = allRows[0].map(function(c) { return typeof c === 'object' ? c.text : c; });
+      var rows = allRows.slice(1);
+      return { headers: headers, rows: rows };
+    });
+}
+
 function fetchSheet(sheetCfg) {
   var promise;
 
@@ -797,29 +851,16 @@ function fetchSheet(sheetCfg) {
     var gidMatch = url.match(/[#&?]gid=(\d+)/);
     var gid = gidMatch ? gidMatch[1] : '0';
 
-    promise = fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:json&gid=' + gid)
-      .then(function(r) { return r.text(); })
-      .then(function(text) {
-        var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
-        var table = json.table;
-        var headers = table.cols.map(function(c) { return c.label || c.id; });
-        var rows = table.rows.map(function(row) {
-          return (row.c || []).map(function(cell) { return cell ? (cell.f != null ? cell.f : cell.v != null ? cell.v : '') : ''; });
+    // If we have an API key, use the Sheets API to get hyperlinks too
+    if (GOOGLE_API_KEY) {
+      promise = fetchSheetViaAPI(sheetId, sheetCfg.label)
+        .catch(function() {
+          // Fall back to gviz if API fails
+          return fetchSheetViaGviz(sheetId, gid);
         });
-        return { headers: headers, rows: rows };
-      })
-      .catch(function() {
-        return fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/export?format=csv&gid=' + gid)
-          .then(function(r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status + ' — check sheet is set to Anyone with the link can view');
-            return r.text();
-          })
-          .then(function(text) {
-            var parsed = parseCSV(text);
-            if (!parsed.length) throw new Error('Sheet appears empty');
-            return { headers: parsed[0], rows: parsed.slice(1) };
-          });
-      });
+    } else {
+      promise = fetchSheetViaGviz(sheetId, gid);
+    }
   } else {
     promise = Promise.resolve({
       headers: sheetCfg.headers || ['District', 'Incumbent', 'Challenger', 'Last Election', '2024 Prez Margin', 'Notes'],
@@ -830,6 +871,32 @@ function fetchSheet(sheetCfg) {
   return promise.then(function(data) {
     return applyDisplayRules(data, sheetCfg);
   });
+}
+
+function fetchSheetViaGviz(sheetId, gid) {
+  return fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:json&gid=' + gid)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
+      var table = json.table;
+      var headers = table.cols.map(function(c) { return c.label || c.id; });
+      var rows = table.rows.map(function(row) {
+        return (row.c || []).map(function(cell) { return cell ? (cell.f != null ? cell.f : cell.v != null ? cell.v : '') : ''; });
+      });
+      return { headers: headers, rows: rows };
+    })
+    .catch(function() {
+      return fetch('https://docs.google.com/spreadsheets/d/' + sheetId + '/export?format=csv&gid=' + gid)
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status + ' — check sheet is set to Anyone with the link can view');
+          return r.text();
+        })
+        .then(function(text) {
+          var parsed = parseCSV(text);
+          if (!parsed.length) throw new Error('Sheet appears empty');
+          return { headers: parsed[0], rows: parsed.slice(1) };
+        });
+    });
 }
 
 function parseCSV(text) {
@@ -909,13 +976,21 @@ function buildTable(data, pane) {
         var tr = document.createElement('tr');
         headers.forEach(function(h, ci) {
           var td = document.createElement('td');
-          var val = String(row[ci] != null ? row[ci] : '');
-          if (/^https?:\/\//i.test(val.trim())) {
+          var raw = row[ci] != null ? row[ci] : '';
+          var val, linkUrl;
+          if (typeof raw === 'object' && raw !== null) {
+            val = raw.text || '';
+            linkUrl = raw.url || null;
+          } else {
+            val = String(raw);
+            linkUrl = /^https?:\/\//i.test(val.trim()) ? val.trim() : null;
+          }
+          if (linkUrl) {
             var a = document.createElement('a');
-            a.href = val.trim();
+            a.href = linkUrl;
             a.target = '_blank';
             a.rel = 'noopener';
-            a.textContent = val.trim();
+            a.textContent = val;
             a.style.cssText = 'color:var(--blue);text-decoration:underline;text-underline-offset:2px;';
             td.appendChild(a);
           } else {
@@ -951,13 +1026,13 @@ function buildTable(data, pane) {
     var ci = pane.querySelector('.col-sel').value;
     var cv = pane.querySelector('.val-sel').value;
     filtered = rows.filter(function(row) {
-      if (search && !row.some(function(c) { return String(c).toLowerCase().indexOf(search) >= 0; })) return false;
-      if (ci !== '' && cv !== '' && String(row[ci] != null ? row[ci] : '') !== cv) return false;
+      if (search && !row.some(function(c) { return cellText(c).toLowerCase().indexOf(search) >= 0; })) return false;
+      if (ci !== '' && cv !== '' && cellText(row[ci]) !== cv) return false;
       return true;
     });
     if (sortCol >= 0) {
       filtered = filtered.slice().sort(function(a, b) {
-        var av = a[sortCol] != null ? a[sortCol] : '', bv = b[sortCol] != null ? b[sortCol] : '';
+        var av = cellText(a[sortCol]), bv = cellText(b[sortCol]);
         var an = parseFloat(av), bn = parseFloat(bv);
         if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
         return String(av).localeCompare(String(bv)) * sortDir;
@@ -978,7 +1053,7 @@ function buildTable(data, pane) {
     vs.innerHTML = '<option value="">All values</option>';
     if (cs.value !== '') {
       var seen = {};
-      rows.forEach(function(r) { var v = String(r[cs.value] != null ? r[cs.value] : ''); seen[v] = true; });
+      rows.forEach(function(r) { var v = cellText(r[cs.value]); seen[v] = true; });
       Object.keys(seen).sort().forEach(function(v) {
         var o = document.createElement('option'); o.value = v; o.textContent = v || '(empty)'; vs.appendChild(o);
       });
