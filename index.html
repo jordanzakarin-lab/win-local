@@ -803,17 +803,12 @@ function applyDisplayRules(data, sheetCfg) {
 // Each cell in data.rows is either a plain string, or an object {text, url}
 // when a hyperlink is present. The renderer handles both cases.
 
-function fetchSheetViaAPI(sheetId, sheetLabel) {
+function fetchSheetViaAPI(sheetId, gid) {
   // Use Sheets API v4 to get cell values + hyperlinks
-  var encodedLabel = encodeURIComponent(sheetLabel);
-  var apiUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetId
-    + '/values/' + encodedLabel
-    + '?key=' + GOOGLE_API_KEY;
-
-  // Also fetch the hyperlink data via the cellData endpoint
+  // We reference by gid number, letting the API find the right tab
   var dataUrl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetId
-    + '?ranges=' + encodedLabel
-    + '&fields=sheets(data(rowData(values(formattedValue,hyperlink))))'
+    + '?includeGridData=true'
+    + '&fields=sheets(properties(sheetId),data(rowData(values(formattedValue,hyperlink))))'
     + '&key=' + GOOGLE_API_KEY;
 
   return fetch(dataUrl)
@@ -822,10 +817,24 @@ function fetchSheetViaAPI(sheetId, sheetLabel) {
       return r.json();
     })
     .then(function(json) {
-      var sheetData = json.sheets && json.sheets[0] && json.sheets[0].data && json.sheets[0].data[0];
-      if (!sheetData || !sheetData.rowData || !sheetData.rowData.length) throw new Error('Empty sheet');
+      // Find the sheet matching our gid
+      var targetGid = parseInt(gid, 10);
+      var sheet = null;
+      if (json.sheets) {
+        for (var i = 0; i < json.sheets.length; i++) {
+          var props = json.sheets[i].properties;
+          if (props && (props.sheetId === targetGid || (targetGid === 0 && i === 0))) {
+            sheet = json.sheets[i];
+            break;
+          }
+        }
+        // Fallback: just use first sheet
+        if (!sheet) sheet = json.sheets[0];
+      }
 
-      var allRows = sheetData.rowData.map(function(row) {
+      if (!sheet || !sheet.data || !sheet.data[0] || !sheet.data[0].rowData) throw new Error('Empty sheet');
+
+      var allRows = sheet.data[0].rowData.map(function(row) {
         return (row.values || []).map(function(cell) {
           var text = cell.formattedValue || '';
           var url  = cell.hyperlink || null;
@@ -853,7 +862,8 @@ function fetchSheet(sheetCfg) {
 
     // If we have an API key, use the Sheets API to get hyperlinks too
     if (GOOGLE_API_KEY) {
-      promise = fetchSheetViaAPI(sheetId, sheetCfg.label)
+      // Use the gid to find the correct sheet tab name via the API
+      promise = fetchSheetViaAPI(sheetId, gid)
         .catch(function() {
           // Fall back to gviz if API fails
           return fetchSheetViaGviz(sheetId, gid);
