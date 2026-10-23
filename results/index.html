@@ -110,6 +110,8 @@ td.num,th.num{text-align:right}
 .hold td{color:var(--muted)}
 .showhold{font:500 13px var(--body);background:none;border:0;color:var(--ink);text-decoration:underline;cursor:pointer;padding:0;align-self:flex-start}
 .section-h{font-family:var(--display);font-weight:700;font-size:20px;margin:10px 0 0}
+.flip-h{padding:14px 0 8px;margin:0;border-bottom:1px solid var(--rule)}
+.flip-h small{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--muted);margin-left:6px}
 .empty{padding:28px;color:var(--muted);text-align:center}
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
@@ -154,7 +156,7 @@ a{color:inherit}
     <button id="f-all" aria-pressed="true" data-f="all">All chambers</button>
     <button id="f-bg" aria-pressed="false" data-f="bg">Battlegrounds</button>
     <button id="f-called" aria-pressed="false" data-f="called">Control decided</button>
-    <button id="f-flip" aria-pressed="false" data-f="flip">Changing hands</button>
+    <button id="f-flip" aria-pressed="false" data-f="flip">Chambers flipped</button>
     <input id="q" type="search" placeholder="State, district or legislator" aria-label="Search chambers, districts or legislators">
   </div>
 
@@ -252,7 +254,7 @@ a{color:inherit}
   function statusHTML(c,x){
     if (!c.election) return `<div class="st"><span class="pill ${c.control}">${ctlLabel(c.control)}</span><span class="was">Next regular election ${nextYear(c)}</span></div>`;
     const was = `<span class="was">Now: ${ctlLabel(c.control)} ${c.cur.D}–${c.cur.R}${c.cur.I?'–'+c.cur.I:''}</span>`;
-    if (x.decided) return `<div class="st"><span class="pill ${x.decided}">${x.decided} control</span>${x.changes?'<span class="pill flip">CHANGES HANDS</span>':''}${was}</div>`;
+    if (x.decided) return `<div class="st"><span class="pill ${x.decided}">${x.decided} control</span>${x.changes?'<span class="pill flip">FLIPPED</span>':''}${was}</div>`;
     return `<div class="st"><span class="pill">Not decided</span>${was}</div>`;
   }
   // Chambers with no regular 2026 election: four-year senates elected in 2024 go next in 2028; odd-year states in 2027
@@ -369,20 +371,30 @@ a{color:inherit}
   function render(){
     const xs = new Map(CH.map(c=>[c.id,compute(c)]));
     const el = CH.filter(c=>c.election);
-    let dCh=0,rCh=0,chg=0,sD=0,sR=0,called=0,fD=0,fR=0;
-    el.forEach(c=>{const x=xs.get(c.id); if(x.decided==='D')dCh++; if(x.decided==='R')rCh++; if(x.changes)chg++; sD+=x.won.D; sR+=x.won.R; called+=x.called; fD+=x.flipsD; fR+=x.flipsR;});
+    let dCh=0,rCh=0,chg=0,chD=0,chR=0,sD=0,sR=0,called=0,fD=0,fR=0;
+    el.forEach(c=>{const x=xs.get(c.id); if(x.decided==='D')dCh++; if(x.decided==='R')rCh++; if(x.changes){chg++; if(x.decided==='D')chD++; else chR++;} sD+=x.won.D; sR+=x.won.R; called+=x.called; fD+=x.flipsD; fR+=x.flipsR;});
     const up = el.reduce((a,c)=>a+c.up,0);
     $('#tally').innerHTML = `
       <div class="tile"><div class="k">Chambers decided</div><div class="v"><span class="d">${dCh}</span><small> D </small><span class="r">${rCh}</span><small> R</small></div></div>
       <div class="tile"><div class="k">Not yet decided</div><div class="v">${el.length-dCh-rCh}<small> of ${el.length}</small></div></div>
-      <div class="tile"><div class="k">Changing hands</div><div class="v">${chg}</div></div>
+      <div class="tile"><div class="k">Chambers flipped</div><div class="v"><span class="d">${chD}</span><small> R→D </small><span class="r">${chR}</span><small> D→R</small></div></div>
       <div class="tile"><div class="k">Seats called</div><div class="v">${called.toLocaleString('en-US')}<small> of ${up.toLocaleString('en-US')}</small></div></div>
       <div class="tile"><div class="k">Seats won</div><div class="v"><span class="d">${sD.toLocaleString('en-US')}</span><small> D </small><span class="r">${sR.toLocaleString('en-US')}</span><small> R</small></div></div>
       <div class="tile"><div class="k">Seat flips</div><div class="v"><span class="d">${fD}</span><small> to D </small><span class="r">${fR}</span><small> to R</small></div></div>`;
     const open = new Map([...document.querySelectorAll('details.ch[open]')].map(d=>[d.dataset.id,!!d._hold]));
     const order = (a,b)=> (xs.get(b.id).bg - xs.get(a.id).bg) || a.state.localeCompare(b.state) || (a.ch==='upper') - (b.ch==='upper');
     const list = el.filter(c=>matches(c,xs.get(c.id))).sort(order);
-    $('#board').innerHTML = list.length ? list.map(c=>chamberHTML(c,xs.get(c.id))).join('') : '<div class="empty">No chambers match. Clear the search or pick another filter.</div>';
+    if (filter==='flip'){
+      const grp = (label, cs) => cs.length ? `<h2 class="section-h flip-h">${label} <small>${cs.length}</small></h2>` + cs.map(c=>chamberHTML(c,xs.get(c.id))).join('') : '';
+      const toD = list.filter(c=>c.control==='R' && xs.get(c.id).decided==='D');
+      const toR = list.filter(c=>c.control==='D' && xs.get(c.id).decided==='R');
+      const other = list.filter(c=>!toD.includes(c) && !toR.includes(c));
+      const html = grp('Republican to Democratic', toD) + grp('Democratic to Republican', toR)
+        + other.map(c=>{ const x=xs.get(c.id); return grp(ctlLabel(c.control)+' to '+(x.decided==='D'?'Democratic':'Republican'), [c]); }).join('');
+      $('#board').innerHTML = html || '<div class="empty">No chambers have flipped yet. A chamber appears here once a party other than the current majority clinches control.</div>';
+    } else {
+      $('#board').innerHTML = list.length ? list.map(c=>chamberHTML(c,xs.get(c.id))).join('') : '<div class="empty">No chambers match. Clear the search or pick another filter.</div>';
+    }
     const off = CH.filter(c=>!c.election && matches(c,xs.get(c.id)) && filter==='all');
     $('#offHead').hidden = !off.length;
     $('#offBoard').innerHTML = off.map(c=>chamberHTML(c,xs.get(c.id))).join('');
