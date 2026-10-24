@@ -323,7 +323,14 @@ a{color:inherit}
       const inc = row.upInc || row.inc;
       if (!row.up) return `<tr class="hold"><td><span class="dist">${esc(row.d)}</span></td><td>${incHTML(row.inc)}</td><td colspan="5">Not up this year</td></tr>`;
       const rs = RACES.get(c.st+'|'+c.ch+'|'+dkey(row.d))||[];
-      if (!rs.length) return `<tr><td><span class="dist">${esc(row.d)}</span>${row.comp?'<span class="tag">KEY</span>':''}${row.special?'<span class="tag">SPECIAL</span>':''}</td><td>${incHTML(inc)}</td><td class="res NONE">No results yet</td><td></td><td></td><td></td><td></td></tr>`;
+      if (!rs.length){
+        // Before results: show the nominees on the ballot (from baseline), flag uncontested seats
+        const cd = row.cand || {}, cD = cd.D||[], cR = cd.R||[], oth = cd.O||[];
+        const nm = l => l.length ? `<span>${l.map(esc).join(', ')}</span>` : '';
+        const unop = cD.length===1 && !cR.length && !oth.length ? 'D' : (cR.length===1 && !cD.length && !oth.length ? 'R' : '');
+        const res = unop ? `<td class="res NONE">${unop} unopposed</td>` : `<td class="res NONE">No results yet${oth.length?`<span class="vv">Also running: ${oth.map(esc).join(', ')}</span>`:''}</td>`;
+        return `<tr><td><span class="dist">${esc(row.d)}</span>${row.comp?'<span class="tag">KEY</span>':''}${row.special?'<span class="tag">SPECIAL</span>':''}</td><td>${incHTML(inc)}</td>${res}<td>${nm(cD)}</td><td>${nm(cR)}</td><td></td><td></td></tr>`;
+      }
       return rs.map(r=>{
         const res=resultOf(r), won=r.status==='Called';
         const mp=r.marginPts, m=(mp==null||mp==='')?'':(mp>0?`<span class="d">D+${Math.abs(mp).toFixed(1)}</span>`:mp<0?`<span class="r">R+${Math.abs(mp).toFixed(1)}</span>`:'Even');
