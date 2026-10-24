@@ -316,7 +316,17 @@ a{color:inherit}
     const v = cn.votes!=null&&cn.votes!=='' ? `${fmt(cn.votes)}${cn.pct!=null&&cn.pct!==''?' · '+cn.pct+'%':''}` : '';
     return `<span class="${win?'win':''}">${esc(cn.name)}</span>${v?`<span class="vv">${v}</span>`:''}`;
   }
-  const incHTML = list => list.map(([n,p])=> p==='V' ? 'Vacant' : `${esc(n)}<span class="pd ${p}">${p==='NP'?'':p}</span>`).join(', ');
+  // Party holding the seat(s), not the officeholder's name
+  const PNAME = {D:'Democratic',R:'Republican',I:'Independent',NP:'Nonpartisan',L:'Libertarian'};
+  const incHTML = list => {
+    const ps = list.map(([,p])=>p), held = ps.filter(p=>p!=='V'), vac = ps.length-held.length;
+    if (!held.length) return 'Vacant';
+    const uniq = [...new Set(held)];
+    const pill = p => (p==='D'||p==='R') ? `<span class="pill ${p}">${PNAME[p]}</span>` : `<span>${esc(PNAME[p]||p)}</span>`;
+    const main = uniq.length===1 ? pill(uniq[0]) + (held.length>1?`<span class="vv">All ${held.length} seats</span>`:'')
+      : `<span>Split</span><span class="vv">${uniq.map(p=>held.filter(x=>x===p).length+' '+p).join(', ')}</span>`;
+    return main + (vac?`<span class="vv">${vac} vacant</span>`:'');
+  };
 
   function districtRows(c, rows){
     return rows.map(row=>{
@@ -361,7 +371,7 @@ a{color:inherit}
       ? `${x.called} called · ${x.counting} still counting · ${c.up - x.called - x.counting} with no results yet${x.src?' · Seat count: '+esc(x.src):''}${x.asOf?' · '+esc(x.asOf):''}`
       : `Current members. This chamber's next regular election is in ${nextYear(c)}.${SPECIAL_NOTE[c.id]?' '+SPECIAL_NOTE[c.id]+'.':''}`;
     box.innerHTML = `<div class="meta">${meta}</div>
-      <div class="tablebox"><table><thead><tr><th>District</th><th>Incumbent</th><th>Result</th><th>Democrat</th><th>Republican</th><th class="num">Margin</th><th class="num">Reporting</th></tr></thead>
+      <div class="tablebox"><table><thead><tr><th>District</th><th>Held by</th><th>Result</th><th>Democrat</th><th>Republican</th><th class="num">Margin</th><th class="num">Reporting</th></tr></thead>
       <tbody>${rows.length?districtRows(c,rows):'<tr><td colspan="7" class="empty">No district list available for this chamber.</td></tr>'}</tbody></table></div>
       ${c.election&&holdN&&!showHold?`<button class="showhold" type="button" data-hold>Show the ${holdN} district${holdN>1?'s':''} not up this year</button>`:''}`;
     det._hold = showHold;
