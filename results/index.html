@@ -327,8 +327,10 @@ a{color:inherit}
         // Before results: show the nominees on the ballot (from baseline), flag uncontested seats
         const cd = row.cand || {}, cD = cd.D||[], cR = cd.R||[], oth = cd.O||[];
         const nm = l => l.length ? `<span>${l.map(esc).join(', ')}</span>` : '';
-        const unop = cD.length===1 && !cR.length && !oth.length ? 'D' : (cR.length===1 && !cD.length && !oth.length ? 'R' : '');
-        const res = unop ? `<td class="res NONE">${unop} unopposed</td>` : `<td class="res NONE">No results yet${oth.length?`<span class="vv">Also running: ${oth.map(esc).join(', ')}</span>`:''}</td>`;
+        const nAll = cD.length + cR.length + oth.length;
+        const unop = nAll===1 ? (cD.length?'D unopposed':cR.length?'R unopposed':'Unopposed') : '';
+        const lbl = 'On the ballot';
+        const res = unop ? `<td class="res NONE">${unop}${!cD.length&&!cR.length?`<span class="vv">${esc(oth[0])}</span>`:''}</td>` : `<td class="res NONE">No results yet${oth.length&&!cD.length&&!cR.length?`<span class="vv">${lbl}: ${oth.map(esc).join(', ')}</span>`:''}</td>`;
         return `<tr><td><span class="dist">${esc(row.d)}</span>${row.comp?'<span class="tag">KEY</span>':''}${row.special?'<span class="tag">SPECIAL</span>':''}</td><td>${incHTML(inc)}</td>${res}<td>${nm(cD)}</td><td>${nm(cR)}</td><td></td><td></td></tr>`;
       }
       return rs.map(r=>{
