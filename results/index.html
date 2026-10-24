@@ -107,6 +107,8 @@ td.num,th.num{text-align:right}
 .vv{display:block;font-family:var(--mono);font-size:12px;color:var(--muted)}
 .win{font-weight:600}
 .dist{font-weight:600}
+a.dist{color:inherit;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+a.dist:hover{text-decoration-color:currentColor}
 .hold td{color:var(--muted)}
 .showhold{font:500 13px var(--body);background:none;border:0;color:var(--ink);text-decoration:underline;cursor:pointer;padding:0;align-self:flex-start}
 .section-h{font-family:var(--display);font-weight:700;font-size:20px;margin:10px 0 0}
@@ -316,6 +318,30 @@ a{color:inherit}
     const v = cn.votes!=null&&cn.votes!=='' ? `${fmt(cn.votes)}${cn.pct!=null&&cn.pct!==''?' · '+cn.pct+'%':''}` : '';
     return `<span class="${win?'win':''}">${esc(cn.name)}</span>${v?`<span class="vv">${v}</span>`:''}`;
   }
+  // Ballotpedia page for each district
+  const ORD = {First:'1st',Second:'2nd',Third:'3rd',Fourth:'4th',Fifth:'5th'};
+  function bpURL(c, d){
+    const st = c.state.replace(/ /g,'_');
+    const body = ({'NE-S':'Nebraska_State_Senate','NJ-H':'New_Jersey_General_Assembly','VA-H':'Virginia_House_of_Delegates'})[c.id] ? ({'NE-S':'Nebraska_State_Senate','NJ-H':'New_Jersey_General_Assembly','VA-H':'Virginia_House_of_Delegates'})[c.id]
+      : c.name==='Senate' ? st+'_State_Senate'
+      : c.name==='House' ? st+'_House_of_Representatives'
+      : c.name==='House of Delegates' ? st+'_House_of_Delegates'
+      : st+'_State_Assembly';
+    let path;
+    if (c.st==='MA'){
+      let k = d.replace(/^(First|Second|Third|Fourth|Fifth)\b/, m=>ORD[m]);
+      if (c.id==='MA-S' && k.includes(',') && !/^Hampshire, Franklin/.test(k)) k = k.replace(/ and (?=[^,]*$)/, ', and ');
+      path = body+'_'+k+'_District';
+    } else if (c.st==='VT'){
+      const k = c.id==='VT-H' && /^(Addison|Bennington)-Rutland$/.test(d) ? d+'-1' : d;
+      path = body+'_'+k+'_District';
+    } else {
+      const k = (c.id==='ID-H'||c.id==='SD-H') ? d.replace(/[A-Z]$/,'') : d;
+      path = body+'_District_'+k;
+    }
+    return 'https://ballotpedia.org/'+path.replace(/ /g,'_');
+  }
+  const distLink = (c,d,lbl) => `<a class="dist" href="${esc(bpURL(c,d))}" target="_blank" rel="noopener" title="Ballotpedia: ${esc(c.state)} ${esc(c.name)} ${esc(d)}">${esc(d)}${lbl||''}</a>`;
   // Party holding the seat(s), not the officeholder's name
   const PNAME = {D:'Democratic',R:'Republican',I:'Independent',NP:'Nonpartisan',L:'Libertarian'};
   const incHTML = list => {
@@ -331,7 +357,7 @@ a{color:inherit}
   function districtRows(c, rows){
     return rows.map(row=>{
       const inc = row.upInc || row.inc;
-      if (!row.up) return `<tr class="hold"><td><span class="dist">${esc(row.d)}</span></td><td>${incHTML(row.inc)}</td><td colspan="5">Not up this year</td></tr>`;
+      if (!row.up) return `<tr class="hold"><td>${distLink(c,row.d)}</td><td>${incHTML(row.inc)}</td><td colspan="5">Not up this year</td></tr>`;
       const rs = RACES.get(c.st+'|'+c.ch+'|'+dkey(row.d))||[];
       if (!rs.length){
         // Before results: show the nominees on the ballot (from baseline), flag uncontested seats
@@ -341,7 +367,7 @@ a{color:inherit}
         const unop = nAll===1 ? (cD.length?'D uncontested':cR.length?'R uncontested':'Uncontested') : '';
         const lbl = 'On the ballot';
         const res = unop ? `<td class="res NONE">${unop}${!cD.length&&!cR.length?`<span class="vv">${esc(oth[0])}</span>`:''}</td>` : `<td class="res NONE">No results yet${oth.length&&!cD.length&&!cR.length?`<span class="vv">${lbl}: ${oth.map(esc).join(', ')}</span>`:''}</td>`;
-        return `<tr><td><span class="dist">${esc(row.d)}</span>${row.comp?'<span class="tag">KEY</span>':''}${row.special?'<span class="tag">SPECIAL</span>':''}</td><td>${incHTML(inc)}</td>${res}<td>${nm(cD)}</td><td>${nm(cR)}</td><td></td><td></td></tr>`;
+        return `<tr><td>${distLink(c,row.d)}${row.comp?'<span class="tag">KEY</span>':''}${row.special?'<span class="tag">SPECIAL</span>':''}</td><td>${incHTML(inc)}</td>${res}<td>${nm(cD)}</td><td>${nm(cR)}</td><td></td><td></td></tr>`;
       }
       return rs.map(r=>{
         const res=resultOf(r), won=r.status==='Called';
@@ -349,7 +375,7 @@ a{color:inherit}
         const mv = r.marginVotes!=null&&r.marginVotes!=='' ? `<span class="vv">${fmt(r.marginVotes)} votes</span>`:'';
         const flip = r.flip ? '<span class="tag">FLIP</span>' : (r.wouldFlip&&r.status==='Counting' ? '<span class="tag maybe" title="Seat changes parties if the current leader holds on">WOULD FLIP</span>' : '');
         const lbl = /pos/i.test(r.district) ? ' '+esc(String(r.district).match(/pos\w*\.?\s*\d+/i)[0]) : '';
-        return `<tr><td><span class="dist">${esc(row.d)}${lbl}</span>${row.comp?'<span class="tag">KEY</span>':''}</td><td>${incHTML(inc)}</td>
+        return `<tr><td>${distLink(c,row.d,lbl)}${row.comp?'<span class="tag">KEY</span>':''}</td><td>${incHTML(inc)}</td>
           <td class="res ${res.cls}">${res.html}${flip}${res.sub?`<span class="vv">${res.sub}</span>`:''}${r.calledBy&&won?`<span class="vv">Called by ${esc(r.calledBy)}</span>`:''}${raceBar(r)}</td>
           <td>${cand(r.dem,won&&r.leader==='D')}</td><td>${cand(r.rep,won&&r.leader==='R')}</td>
           <td class="num">${m}${mv}</td><td class="num"><span class="vv">${esc(r.reporting||'')}</span>${r.source?`<a href="${esc(r.source)}" target="_blank" rel="noopener">Results</a>`:''}</td></tr>`;
